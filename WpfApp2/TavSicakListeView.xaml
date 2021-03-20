@@ -1,0 +1,79 @@
+﻿<Window
+    x:Class="WpfApp2.TavSicakListeView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    xmlns:local="clr-namespace:WpfApp2"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="TavSicakListeView"
+    WindowState="Maximized"
+    Width="800"
+    Height="450"
+    mc:Ignorable="d">
+    <Window.DataContext>
+        <local:TavSicaklikListeVM />
+    </Window.DataContext>
+
+    <StackPanel>
+
+        <DockPanel>
+            <Button
+                Width="95"
+                Height="30"
+                Margin="8"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Command="{Binding VeriGetirCommand}"
+                Content="Db Veri Getir" />
+            <Button
+                Width="75"
+                Height="30"
+                HorizontalAlignment="Left"
+                Command="{Binding VeriEkleCommand}"
+                Content="Veri Ekle" />
+
+
+            <Button
+                Width="75"
+                Height="30"
+                Margin="7"
+                HorizontalAlignment="Left"
+                Command="{Binding SicaklikGirisCommand}"
+                CommandParameter="{Binding Text, ElementName=txtTavNo}"
+                Content="Sıcaklık Giriş" />
+            
+            <TextBox x:Name="txtTavNo" HorizontalAlignment="Left" Width="120" Margin="7" Text="" />
+
+
+
+        </DockPanel>
+
+
+        <dxg:GridControl
+            Grid.Row="1"
+            MaxHeight="1000"
+            AutoGenerateColumns="None"
+            ItemsSource="{Binding LtfSicakliklari, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <dxg:GridControl.View>
+                <dxg:TableView
+                    AutoWidth="True"
+                    ShowGroupPanel="False"
+                    ShowTotalSummary="True" />
+            </dxg:GridControl.View>
+            <dxg:GridColumn FieldName="Id" IsSmart="True" />
+            <dxg:GridColumn FieldName="SiraNo" IsSmart="True" />
+            <dxg:GridColumn FieldName="TavNo" IsSmart="True" />
+            <dxg:GridColumn FieldName="TarihSaat" IsSmart="True" />
+            <dxg:GridColumn FieldName="Malzeme" IsSmart="True" />
+            <dxg:GridColumn FieldName="Bolge1" IsSmart="True" />
+            <dxg:GridColumn FieldName="Bolge2" IsSmart="True" />
+            <dxg:GridColumn FieldName="Bolge3" IsSmart="True" />
+            <dxg:GridColumn FieldName="Bolge4" IsSmart="True" />
+            <dxg:GridColumn FieldName="Bolge5" IsSmart="True" />
+        </dxg:GridControl>
+
+
+
+    </StackPanel>
+</Window>
