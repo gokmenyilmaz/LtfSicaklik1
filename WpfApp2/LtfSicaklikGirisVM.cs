@@ -22,6 +22,14 @@ namespace WpfApp2
         public DelegateCommand BaslatCommand => new DelegateCommand(OnBaslat, CanBaslat);
         public DelegateCommand BitirCommand => new DelegateCommand(OnBitir, CanBitir);
 
+        public DelegateCommand<CellValue> CellValueChangedCommand=> new DelegateCommand<CellValue>(OnCellValueChanged);
+
+        private void OnCellValueChanged(CellValue value)
+        {
+
+            MessageBox.Show("değişti");
+        }
+
         private bool CanBitir()
         {
             return true;

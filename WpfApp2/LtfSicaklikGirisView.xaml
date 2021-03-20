@@ -6,7 +6,7 @@
     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
     xmlns:local="clr-namespace:WpfApp2"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
     Title="MainWindow"
     Width="1048.2"
     Height="486.4"
@@ -57,7 +57,16 @@
                     AlternateRowBackground="WhiteSmoke"
                     AutoWidth="True"
                     ShowGroupPanel="False"
-                    ShowTotalSummary="True" />
+                    ShowTotalSummary="True" >
+                    <dxmvvm:Interaction.Behaviors>
+                        <dxmvvm:EventToCommand Command="{Binding CellValueChangedCommand}"
+                                               EventName="CellValueChanged">
+                            <dxmvvm:EventToCommand.EventArgsConverter>
+                                <dx:EventArgsToDataCellConverter/>
+                            </dxmvvm:EventToCommand.EventArgsConverter>
+                        </dxmvvm:EventToCommand>
+                    </dxmvvm:Interaction.Behaviors>
+                </dxg:TableView>
             </dxg:GridControl.View>
 
             <dxg:GridColumn
